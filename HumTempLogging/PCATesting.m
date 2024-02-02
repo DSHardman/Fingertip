@@ -36,13 +36,17 @@ end
 plot(quantity, mean(errors, 2));
 
 %% 
+subplot(2,1,1);
 load("HumidityPCAErrors.mat");
 addplot(errors, quantity, 'b');
-% hold on
-% load("Temperature2PCAErrors.mat");
-% addplot(errors, quantity, 'g');
+ylabel("Average Error (% RH)");
 
-% load("TemperaturePCAErrors.mat");
+subplot(2,1,2);
+load("TemperaturePCAErrors.mat");
+addplot(errors, quantity, 'g');
+ylabel("Average Error (^oC)");
+
+set(gcf, 'position', [335   194   864   563], 'color', 'w');
 
 function addplot(errors, quantity, col)
     plot(quantity, mean(errors, 2));
@@ -57,8 +61,6 @@ function addplot(errors, quantity, col)
     box off
     set(gca, 'linewidth', 2, 'fontsize', 15);
     xlim([0 928]);
-    xlabel("Number of combinations");
-    ylabel("Average Error (% RH)");
-    
-    set(gcf, 'position', [335   458   864   300]);
+    xlabel("Number of Channels");
+
 end
